@@ -1,10 +1,6 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
-import BlogGallery from './components/BlogGallery.vue'
-import UserInput from "./components/UserInput.vue";
-import PizzaItem from "./components/PizzaItem.vue";
-import Ex06 from "./components/Ex06.vue";
 </script>
 
 <template>
@@ -13,13 +9,16 @@ import Ex06 from "./components/Ex06.vue";
 
     <div class="wrapper">
       <HelloWorld msg="You did it!" />
-      <BlogGallery />
-      <UserInput />
+
+      <nav>
+        <RouterLink :to="{ name: 'home'}">Home</RouterLink>
+        <RouterLink to="/about?user=Phuoc">About</RouterLink>
+        <RouterLink :to="{ name: 'messageFeed'}">Message Feed</RouterLink>
+      </nav>
     </div>
-    <PizzaItem/>
-    <Ex06/>
   </header>
 
+  <RouterView />
 </template>
 
 <style scoped>
