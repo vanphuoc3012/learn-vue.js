@@ -8,9 +8,12 @@
 
 <script setup>
 import { useRoute } from 'vue-router'
+import { defineProps } from 'vue'
 
-const route = useRoute();
-const { user } = route.query;
+const route = useRoute()
+const props = defineProps({
+  user: String
+})
 </script>
 
 <style>
