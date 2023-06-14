@@ -1,31 +1,41 @@
 <script setup>
-  import { ref } from "vue";
+import {store} from "@/stores/store";
 
-  const emit = defineEmits(['submit'])
-  const name = ref('');
 
-  function submitForm() {
-    emit('submit', {
-      name: this.name
-    })
-  }
+function clear() {
+    store.name = '';
+    store.occupation = '';
+}
 </script>
 
 <template>
-  <section class="md:w-2/3 flex flex-col p-12 items-center bg-red-200">
-    <!--  Inputs-->
-    <label class="flex text-gray-800 mb-2">Name</label>
-    <input
-      id="name"
-      type="text"
-      name="name"
-      class="border-2 border-solid border-blue-200 rounded px-2 py-1"
-    />
+    <section class="md:w-2/3 flex flex-col p-12 items-center">
+        <!--  Inputs-->
+        <div class="flex flex-col mt-2">
+            <label class="flex text-gray-800 mb-2" for="name">Name</label>
+            <input
+                    id="name"
+                    type="text"
+                    name="name"
+                    class="border-2 border-solid border-blue-200 rounded px-2 py-1"
+                    v-model="store.name"
+            />
+        </div>
+        <div class="flex flex-col mt-2">
+            <label class="flex text-gray-800 mb-2" for="name">Occupation</label>
+            <input
+                    id="occupation"
+                    type="text"
+                    name="occupation"
+                    class="border-2 border-solid border-blue-200 rounded px-2 py-1"
+                    v-model="store.occupation"
+            />
+        </div>
 
-    <div>
-      <button type="submit" @click="submitForm()" class="">Submit</button>
-    </div>
-  </section>
+        <div class="w-1/2 flex md:flex-row mt-12">
+<!--            <button type="submit" class="flex md:w-1/2 justify-center">Submit</button>-->
+        </div>
+    </section>
 </template>
 
 <style scoped></style>
