@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavaScriptLibraryMappings">
-    <file url="file://$PROJECT_DIR$/chap09/vue-state-management" libraries="{front-end-vuejs/chap09/vue-state-management/node_modules}" />
-    <file url="PROJECT" libraries="{front-end-vuejs/chap07/vue-router-project/node_modules, front-end-vuejs/chap09/vue-state-management/node_modules}" />
     <includedPredefinedLibrary name="Node.js Core" />
   </component>
 </project>
