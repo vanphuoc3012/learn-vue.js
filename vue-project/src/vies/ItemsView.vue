@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts">
 
 import ItemList from "../components/ItemList.vue";
 import { computed, defineComponent, onMounted } from "vue";
@@ -27,6 +27,7 @@ export default defineComponent({
     };
 
     onMounted(async () => {
+      console.log("ItemsView on mounted")
       await itemStoreActions.loadItems();
     });
 
@@ -39,7 +40,7 @@ export default defineComponent({
 
 <template>
   <div>
-    <ItemList items="items" loading="loading" @selectItem="onSelectItem"></ItemList>
+    <ItemList :items="items" :loading="loading" @selectItem="onSelectItem"></ItemList>
   </div>
 </template>
 

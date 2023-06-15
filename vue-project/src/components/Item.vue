@@ -20,7 +20,7 @@ export default defineComponent({
     const cssClass = computed(() => {
       let css = "item";
       if (props.model.selected) {
-        css += "selected";
+        css += " selected";
       }
       return css.trim();
     });

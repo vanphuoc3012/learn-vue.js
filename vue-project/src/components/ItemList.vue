@@ -1,27 +1,29 @@
 <script setup lang="ts">
 import { ItemInterface } from "../models";
 import ItemComponent from "./Item.vue";
+import ElLoader from "./Loader.compnent.vue";
 
 defineProps<{
   items: ItemInterface[],
-  loading: boolean
+  loading: Boolean
 }>();
 
 const emit = defineEmits<{ (e: "selectItem", id: number): any }>();
 
-const handleClick = (item: ItemInterface) => {
+const onSelectItem = (item: ItemInterface) => {
   console.log("handleClick", item.id, item.selected);
   emit("selectItem", item.id);
 };
 </script>
 
 <template>
-  <h3>Items: </h3>
+  <h3>My Items</h3>
+  <ElLoader v-show="loading"></ElLoader>
   <ul>
     <ItemComponent v-for="(item, index) in items"
                    :key="item.id"
                    :model="item"
-                   @click="handleClick(item)"
+                   @click="onSelectItem(item)"
     >
       {{ item.name }} [{{ item.selected }}]
     </ItemComponent>

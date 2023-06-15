@@ -9,6 +9,7 @@ const itemsState = reactive<ItemStateInterface>({
 
 const actions = {
   loadItems: async () => {
+    console.log("loading data")
     itemsState.loading = true;
     itemsState.items = [];
 
@@ -36,7 +37,7 @@ const actions = {
 
     setTimeout(() => {
       itemsState.items = mockData;
-      itemsState.loading = true;
+      itemsState.loading = false;
     }, 1000);
   },
   toggleItemSelected: async (id: number) => {
