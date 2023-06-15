@@ -2,7 +2,10 @@
 import { ItemInterface } from "../models";
 import ItemComponent from "./Item.vue";
 
-defineProps<{ items: ItemInterface[] }>();
+defineProps<{
+  items: ItemInterface[],
+  loading: boolean
+}>();
 
 const emit = defineEmits<{ (e: "selectItem", id: number): any }>();
 

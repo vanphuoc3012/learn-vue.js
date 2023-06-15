@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import ItemList from "./components/ItemList.vue";
 import { ItemInterface } from "./models";
 import { reactive } from "vue";
+import ItemsView from "./vies/ItemsView.vue";
 
 const items: ItemInterface[] = reactive([{
   id: 1,
@@ -40,10 +40,7 @@ const onSelectItem = (id: number) => {
   </div>
 
   <div class="home">
-    <ItemList
-      :items="items"
-      @selectItem="onSelectItem"
-    />
+    <ItemsView/>
   </div>
 </template>
 
