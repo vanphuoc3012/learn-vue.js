@@ -1,7 +1,7 @@
 import { ItemsApiClientInterface } from "./ItemsApiClient.interface.ts";
 import { ItemInterface } from "../../../models";
 import { ItemsApiClientEndpoints, ItemsApiClientOptions } from "./ItemsApiClientOptions.interface.ts";
-import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 
 export class ItemsApiClientModel implements ItemsApiClientInterface {
   private readonly endpoints!: ItemsApiClientEndpoints;
@@ -14,29 +14,27 @@ export class ItemsApiClientModel implements ItemsApiClientInterface {
     }
   }
 
-  fetchItems(): Promise<ItemInterface[]> {
-    return new Promise<ItemInterface[]>((resolve) => {
+   fetchItems(): Promise<ItemInterface[]> {
+    return new Promise<ItemInterface[]> (async(resolve) => {
       const endpoint = this.endpoints.fetchItems;
 
       const options: AxiosRequestConfig = {
         headers: {}
       };
 
-      axios
-        .get(endpoint, options)
-        .then((response: AxiosResponse) => {
-          if (!this.mockDelay) {
-            resolve(response.data as ItemInterface[]);
-          } else {
-            setTimeout(() => {
-              resolve(response.data as ItemInterface[]);
-            }, this.mockDelay);
-          }
-        })
-        .catch((error: any) => {
-          console.error("ItemsApiClient: HttpClient: Get: error", error);
-        });
+      try {
+        const res = await axios.get(endpoint, options);
+
+        if (!this.mockDelay) {
+          resolve(res.data as ItemInterface[]);
+        } else {
+          setTimeout(() => {
+            resolve(res.data as ItemInterface[]);
+          }, this.mockDelay);
+        }
+      } catch (error) {
+        console.error("ItemsApiClient: HttpClient: Get: error", error);
+      }
     });
   }
-
 }

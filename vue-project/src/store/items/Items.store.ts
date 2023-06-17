@@ -1,6 +1,6 @@
 import { reactive } from "vue";
 import { ItemStateInterface } from "./models";
-import { ItemInterface } from "../../models";
+import { apiClient } from "../../api-client";
 
 const itemsState = reactive<ItemStateInterface>({
   loading: false,
@@ -13,32 +13,8 @@ const actions = {
     itemsState.loading = true;
     itemsState.items = [];
 
-    let mockData: ItemInterface[] = [{
-      id: 1,
-      name: "Item 1",
-      selected: false
-    }, {
-      id: 2,
-      name: "Item 2",
-      selected: false
-    }, {
-      id: 3,
-      name: "Item 3",
-      selected: false
-    }, {
-      id: 4,
-      name: "Item 4",
-      selected: false
-    }, {
-      id: 5,
-      name: "Item 5",
-      selected: false
-    }];
-
-    setTimeout(() => {
-      itemsState.items = mockData;
-      itemsState.loading = false;
-    }, 1000);
+    itemsState.items = await apiClient.items.fetchItems();
+    itemsState.loading = false;
   },
   toggleItemSelected: async (id: number) => {
     const item = (itemsState.items || []).find(
