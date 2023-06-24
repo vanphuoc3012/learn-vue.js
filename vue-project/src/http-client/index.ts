@@ -15,5 +15,5 @@ export const useHttpClient = () => {
     }
   }
 
-  return _httpClient;
+  return _httpClient as HttpClientInterface;
 };
